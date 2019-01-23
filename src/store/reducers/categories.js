@@ -1,11 +1,16 @@
 import { RECEIVE_CATEGORIES } from "../actions/categories";
 
-export default function categories(state = {}, action) {
+const initialState = {
+  loading: true,
+  list: []
+};
+
+export default function categories(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_CATEGORIES:
       return {
-        ...state,
-        ...action.categories
+        loading: false,
+        list: action.categories
       };
     default:
       return state;

@@ -26,14 +26,14 @@ export function addComment(comment) {
   };
 }
 
-export function increaseCommentVotes(comment) {
+export function increaseCommentVotesAction(comment) {
   return {
     type: INCREASE_COMMENT_VOTES,
     comment
   };
 }
 
-export function decreaseCommentVotes(comment) {
+export function decreaseCommentVotesAction(comment) {
   return {
     type: DECREASE_COMMENT_VOTES,
     comment
@@ -74,7 +74,7 @@ export function handdleRemoveComment(commentId) {
 export function handdleIncreaseCommentVotes(commentId) {
   return dispatch => {
     increaseCommentVotes(commentId).then(comment => {
-      dispatch(increaseCommentVotes(comment));
+      dispatch(increaseCommentVotesAction(comment));
     });
   };
 }
@@ -82,7 +82,7 @@ export function handdleIncreaseCommentVotes(commentId) {
 export function handdleDecreaseCommentVotes(commentId) {
   return dispatch => {
     decreaseCommentVotes(commentId).then(comment => {
-      dispatch(decreaseCommentVotes(comment));
+      dispatch(decreaseCommentVotesAction(comment));
     });
   };
 }

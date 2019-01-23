@@ -1,0 +1,19 @@
+#sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  left: -220px;
+  width: 220px;
+  overflow-y: auto;
+  background: #fcfcfc;
+  border: 0;
+  min-height: 100vh;
+  will-change: left;
+  transition: all 0.15s linear;
+}
+
+#sidebar.toggled {
+  left: 0;
+}

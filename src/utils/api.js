@@ -13,11 +13,10 @@ const headers = {
 };
 
 export const getInitialData = () => {
-  return Promise.all([getPosts(), getCategories(), getFavorites()]).then(
-    ([posts, categories, favorites]) => ({
+  return Promise.all([getPosts(), getCategories()]).then(
+    ([posts, categories]) => ({
       posts,
-      categories,
-      favorites
+      categories
     })
   );
 };
@@ -32,31 +31,6 @@ export const getPosts = (categoryId = undefined) =>
         .then(res => res.json())
         .then(data => data)
         .catch(error => console.log(error));
-
-export const getFavorites = () =>
-  fetch(`${API_URL}/favorites`, { headers })
-    .then(res => res.json())
-    .then(data => data)
-    .catch(error => console.log(error));
-
-export const saveFavorite = favorite =>
-  fetch(`${API_URL}/favorites`, {
-    headers,
-    method: "POST",
-    body: JSON.stringify(favorite)
-  })
-    .then(res => res.json())
-    .then(data => data)
-    .catch(error => console.log(error));
-
-export const deleteFavorite = favoriteId =>
-  fetch(`${API_URL}/posts/${favoriteId}`, {
-    headers,
-    method: "DELETE"
-  })
-    .then(res => res.json())
-    .then(data => data)
-    .catch(error => console.log(error));
 
 export const getPost = postId =>
   fetch(`${API_URL}/posts/${postId}`, { headers })

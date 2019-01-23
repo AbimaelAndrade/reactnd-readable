@@ -1,33 +1,52 @@
-import { RECEIVE_POSTS, ADD_POST, REMOVE_POST } from "../actions/posts";
+import {
+  LIST_POSTS,
+  INCREASE_VOTE_POST,
+  DECREASE_VOTE_POST
+} from "../actions/post";
 
-const addPost = (state, action) => ({
-  ...state,
-  posts: {
-    ...state.posts,
-    [action.post.id]: {
-      ...action.post
-    }
-  }
-});
+const initialState = {
+  loading: true,
+  list: []
+};
 
-const removePost = (state, action) => ({
-  ...state,
-  posts: {
-    ...state.posts.filter(post => post.id !== action.postId)
-  }
-});
-
-export default function posts(state = {}, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
-    case RECEIVE_POSTS:
+    case LIST_POSTS:
+      switch (action.sortType) {
+        case "DATE":
+          return {
+            loading: false,
+            sortType: "DATE",
+            list: action.posts.sort(
+              (p1, p2) =>
+                action.sortOrder === "ASC"
+                  ? p1.timestamp - p2.timestamp
+                  : p2.timestamp - p1.timestamp
+            )
+          };
+        case "VOTES":
+          return {
+            loading: false,
+            sortType: "VOTES",
+            list: action.posts.sort(
+              (p1, p2) =>
+                action.sortOrder === "ASC"
+                  ? p1.voteScore - p2.voteScore
+                  : p2.voteScore - p1.voteScore
+            )
+          };
+        default:
+          return action.posts;
+      }
+
+    case INCREASE_VOTE_POST:
+    case DECREASE_VOTE_POST:
       return {
-        ...state,
-        ...action.posts
+        loading: false,
+        list: state.list.map(post => {
+          return post.id === action.post.id ? action.post : post;
+        })
       };
-    case ADD_POST:
-      return addPost(state, action);
-    case REMOVE_POST:
-      return removePost(state, action);
     default:
       return state;
   }
