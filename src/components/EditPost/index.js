@@ -1,32 +1,26 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Label } from "semantic-ui-react";
 import { Form, Dropdown } from "formsy-semantic-ui-react";
-import { handleAddPost } from "../../store/actions/post";
-import { withRouter } from "react-router-dom";
 
-import { handdleReceiveCategories } from "../../store/actions/categories";
-
-class NewPost extends Component {
-  componentDidMount() {
-    this.props.dispatch(handdleReceiveCategories());
-  }
-
+class EditPost extends Component {
   onValidSubmit = FormData => {
-    const newPost = {
+    const { post, dispatch, handleEditPost, onSave } = this.props;
+
+    const editPost = {
+      ...post,
       title: FormData.title,
       author: FormData.author,
       category: FormData.category,
       body: FormData.body
     };
 
-    this.props.dispatch(handleAddPost(newPost));
-
-    this.props.history.push("/");
+    dispatch(handleEditPost(editPost));
+    onSave(editPost);
   };
 
   render() {
-    const { categories } = this.props;
+    const { categories, post } = this.props;
+
     const options = categories.map(c => ({
       key: c.path,
       text: c.name,
@@ -39,6 +33,7 @@ class NewPost extends Component {
           <Form.Input
             required
             name="title"
+            defaultValue={post.title}
             label="Título"
             placeholder="Seu título"
             validations="isExisty"
@@ -53,6 +48,7 @@ class NewPost extends Component {
             required
             name="author"
             label="Autor"
+            defaultValue={post.author}
             placeholder="Nome do autor"
             validations="isExisty"
             errorLabel={<Label color="red" pointing />}
@@ -68,7 +64,7 @@ class NewPost extends Component {
             placeholder="Categoria"
             search
             selection
-            defaultValue="react"
+            defaultValue={post.category}
             required
             validations="isExisty"
             validationErrors={{
@@ -83,6 +79,7 @@ class NewPost extends Component {
           required
           name="body"
           label="Conteúdo"
+          defaultValue={post.body}
           validations="isExisty"
           placeholder="Escreva aqui seus conteúdo..."
           errorLabel={<Label color="red" pointing />}
@@ -98,8 +95,4 @@ class NewPost extends Component {
   }
 }
 
-const mapStateToProps = ({ categories }) => ({
-  categories: categories.list
-});
-
-export default withRouter(connect(mapStateToProps)(NewPost));
+export default EditPost;

@@ -30,10 +30,6 @@ class Navbar extends Component {
     menuFixed: false
   };
 
-  componentDidMount() {
-    this.props.dispatch(handdleReceiveCategories());
-  }
-
   stickTopMenu = () => this.setState({ menuFixed: true });
 
   unStickTopMenu = () => this.setState({ menuFixed: false });
@@ -47,6 +43,7 @@ class Navbar extends Component {
 
   goToHome = e => {
     e.preventDefault();
+    this.setState({ selected: "" });
     this.props.history.push("/");
   };
 
@@ -118,4 +115,11 @@ const mapStateToProps = ({ categories }) => ({
   categories: categories.list
 });
 
-export default withRouter(connect(mapStateToProps)(Navbar));
+const mapDispatchToProps = dispatch => dispatch(handdleReceiveCategories());
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Navbar)
+);

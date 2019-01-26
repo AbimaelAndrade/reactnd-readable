@@ -16,43 +16,41 @@ const styleFooter = {
   borderRadius: 0
 };
 
-class App extends Component {
-  goToHome = e => {
-    e.preventDefault();
-    this.props.history.push("/");
-  };
+const goToHome = (e, history) => {
+  e.preventDefault();
+  history.push("/");
+};
 
-  render() {
-    return (
-      <div id="dashboard">
-        <div id="main">
-          <Container style={{ marginTop: "2em" }}>
-            <Header as="h1">
-              <a href="/" onClick={this.goToHome}>
-                Project Readable
-              </a>
-            </Header>
-            <p>This is the second project of the course React Developer</p>
-          </Container>
-          <Navbar />
+const App = ({ history }) => {
+  return (
+    <div id="dashboard">
+      <div id="main">
+        <Container style={{ marginTop: "2em" }}>
+          <Header as="h1">
+            <a href="/" onClick={e => goToHome(e, history)}>
+              Project Readable
+            </a>
+          </Header>
+          <p>This is the second project of the course React Developer</p>
+        </Container>
+        <Navbar />
 
-          <Container>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/new-post" exact component={NewPost} />
-              <Route path="/:category" exact component={Category} />
-              <Route path="/:category/:id" exact component={PostView} />
-            </Switch>
+        <Container>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/new-post" exact component={NewPost} />
+            <Route path="/:category" exact component={Category} />
+            <Route path="/:category/:id" exact component={PostView} />
+          </Switch>
+        </Container>
+        <Segment inverted vertical style={styleFooter}>
+          <Container textAlign="center">
+            <strong>Readable</strong> - Todos os direitos reservados!
           </Container>
-          <Segment inverted vertical style={styleFooter}>
-            <Container textAlign="center">
-              <strong>Readable</strong> - Todos os direitos reservados!
-            </Container>
-          </Segment>
-        </div>
+        </Segment>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default withRouter(App);

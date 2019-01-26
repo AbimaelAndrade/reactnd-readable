@@ -6,7 +6,9 @@ import moment from "moment";
 const CardComment = ({
   comment,
   handdleIncreaseCommentVotes,
-  handdleDecreaseCommentVotes
+  handdleDecreaseCommentVotes,
+  handdleTrashComment,
+  handdleEditComment
 }) => (
   <Card fluid>
     <Card.Content>
@@ -27,6 +29,14 @@ const CardComment = ({
         <span style={{ marginRight: "5px" }}>{comment.voteScore}</span>
         <a onClick={e => handdleDecreaseCommentVotes()}>
           <Icon name="thumbs down outline" size="large" />
+        </a>
+      </span>
+      <span style={{ float: "right" }}>
+        <a onClick={e => handdleEditComment()}>
+          <Icon name="edit outline" size="large" />
+        </a>
+        <a onClick={e => handdleTrashComment()}>
+          <Icon name="trash alternate outline" size="large" />
         </a>
       </span>
     </Card.Content>

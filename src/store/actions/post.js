@@ -33,18 +33,18 @@ export function handleGetPost(postId) {
 }
 
 // Action add post
-function addPostAction(data) {
+function addPostAction(post) {
   return {
     type: ADD_POST,
-    data
+    post
   };
 }
 
 //Middleware add post
 export function handleAddPost(post) {
   return dispatch => {
-    return savePost(post).then(data => {
-      dispatch(addPostAction(data));
+    return savePost(post).then(post => {
+      dispatch(addPostAction(post));
     });
   };
 }
@@ -60,8 +60,8 @@ function editPostAction(post) {
 //Middleware edit post
 export function handleEditPost(post) {
   return dispatch => {
-    return updatePost(post).then(data => {
-      dispatch(editPostAction(data));
+    return updatePost(post).then(post => {
+      dispatch(editPostAction(post));
     });
   };
 }

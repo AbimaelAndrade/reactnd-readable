@@ -3,13 +3,15 @@ import {
   saveComment,
   deleteComment,
   increaseCommentVotes,
-  decreaseCommentVotes
+  decreaseCommentVotes,
+  updateComment
 } from "../../utils/api";
 
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 export const INCREASE_COMMENT_VOTES = "INCREASE_COMMENT_VOTES";
 export const DECREASE_COMMENT_VOTES = "DECREASE_COMMENT_VOTES";
 export const ADD_COMMENT = "ADD_COMMENT";
+export const EDIT_COMMENT = "EDIT_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 export function receiveComments(comments) {
@@ -40,10 +42,17 @@ export function decreaseCommentVotesAction(comment) {
   };
 }
 
-export function removeComment(commentId) {
+export function removeComment(comment) {
   return {
-    type: ADD_COMMENT,
-    commentId
+    type: REMOVE_COMMENT,
+    comment
+  };
+}
+
+export function editComment(comment) {
+  return {
+    type: EDIT_COMMENT,
+    comment
   };
 }
 
@@ -59,6 +68,14 @@ export function handdleAddComment(comment) {
   return dispatch => {
     saveComment(comment).then(comment => {
       dispatch(addComment(comment));
+    });
+  };
+}
+
+export function handdleEditComment(comment) {
+  return dispatch => {
+    updateComment(comment).then(comment => {
+      dispatch(editComment(comment));
     });
   };
 }
