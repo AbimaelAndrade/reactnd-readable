@@ -28,7 +28,7 @@ Execute os comandos baixo:
 ```
 REACT_APP_API_URL=http://localhost:3001
 ```
-> Antes de iniciar o front-end, confirme se o endereço `http://localhost:3001` do back-end está correto.
+> Antes de iniciar o front-end, confirme se o endereço `http://localhost:3001` do back-end está correto.
 
 - Para iniciar o front-end, use `yarn start` na pasta raiz.
 
