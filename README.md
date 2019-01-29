@@ -35,16 +35,17 @@ REACT_APP_API_URL=http://localhost:3001
 ## Bibliotecas utilizadas
 
 
-|           Name           |                         Function                          |
-| :----------------------: | :-------------------------------------------------------: |
-|          moment          |               Execente biblioteca para data               |
-|          redux           |              Conteiner de estado previsível               |
-|       redux-thunk        |          Middleware para requisições assincronas          |
-|       react-redux        |                Ligação do React com Redux                 |
-|     react-router-dom     |                     Criador de rotas                      |
-|    semantic-ui-react     |                     Semantic UI React                     |
-|        prop-types        | Runtime type checking for React props and similar objects |
-| formsy-semantic-ui-react |         Validações de formulários bem intuitivas          |
+|           Name           |                                     Function                                     |
+| :----------------------: | :------------------------------------------------------------------------------: |
+|          moment          |                          Execente biblioteca para data                           |
+|          redux           |                          Conteiner de estado previsível                          |
+|       redux-thunk        |                     Middleware para requisições assincronas                      |
+|       react-redux        |                            Ligação do React com Redux                            |
+|     react-router-dom     |                                 Criador de rotas                                 |
+|    semantic-ui-react     |                                Semantic UI React                                 |
+|        prop-types        |            Runtime type checking for React props and similar objects             |
+| formsy-semantic-ui-react |                     Validações de formulários bem intuitivas                     |
+|          lodash          | A modern JavaScript utility library delivering modularity, performance & extras. |
 
 ## License
 

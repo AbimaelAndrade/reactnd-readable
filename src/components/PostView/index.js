@@ -27,6 +27,7 @@ import {
 } from "semantic-ui-react";
 import { Form } from "formsy-semantic-ui-react";
 import moment from "moment";
+import _ from "lodash";
 import userImage from "../../assets/user.png";
 import CardComment from "../CardComment";
 
@@ -152,13 +153,16 @@ class PostView extends Component {
     if (loading) {
       return <Loader active inline="centered" />;
     } else {
-      if (post.error) {
+      if (post.error || _.isEmpty(post)) {
         return (
           <div style={{ textAlign: "center", height: "100vh" }}>
             <Image src={notfoundgif} size="medium" centered />
             <p style={{ margin: "15px 0", fontSize: "1.2em" }}>
               Desculpa, mas não encotramos o que você procurava. Retonar para a
-              <a onClick={e => history.push("/")} style={{ cursor: "pointer" }}>
+              <a
+                onClick={e => history.push("/")}
+                style={{ cursor: "pointer", marginLeft: "5px" }}
+              >
                 HOME
               </a>
               .

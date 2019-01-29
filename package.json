@@ -5,6 +5,7 @@
   "dependencies": {
     "formsy-react": "^1.1.5",
     "formsy-semantic-ui-react": "^0.3.3",
+    "lodash": "^4.17.11",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
