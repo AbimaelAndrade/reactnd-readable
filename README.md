@@ -2,7 +2,9 @@
 
 Projeto Leitura: um aplicativo web de conteúdo e comentários.
 
-Descrição:
+![Preview rojeto Leitura ](src/assets/preview.png)
+
+## Descrição:
 
 - A página inicial contém uma lista de posts que podem ser ordenados por data ou votos.
 - A lista de posts permite votar positivamente ou negativamente na postagem. para ver mais sobre a postagem é só clicar no título para obter mais informações.
